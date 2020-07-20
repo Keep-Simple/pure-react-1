@@ -8,7 +8,7 @@ const MessageInput = ({data, addData}) => {
     addData([...data, {
       name: 'Keep Simple',
       text: body,
-      date: new Date().getUTCDate(),
+      date: new Date(),
       user_id: '12345',
       id: Math.random() * 100,
       avatar: 'https://robohash.org/quamestlaborum.png?size=50x50&set=set1'

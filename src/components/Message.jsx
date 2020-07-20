@@ -29,7 +29,7 @@ const Message = ({ms, data, editData}) => {
 
   const editHandler = () => {
     if (isEdited) {
-      editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date().getUTCDate} : i));
+      editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date()} : i));
     }
     setEdit(!isEdited);
   }
