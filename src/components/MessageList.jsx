@@ -1,12 +1,13 @@
 import React from 'react';
+import Message from "./Message";
 
-const MessageList = () => {
+const MessageList = ({data}) => {
 
-  const messages = ["My first", "My Second", "Yet final", "Not yet", "That's it"];
+  data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <div>
-      {messages.map(m => <div>{m}</div>)}
+      {data.map(ms => (<Message key={ms.id} ms={ms}/>))}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import MessageInput from "./components/MessageInput";
 import MessageList from "./components/MessageList";
 import * as axios from "axios";
+import jsonData from "./mock/MOCK_DATA.json"
 
 const Chat = () => {
 
@@ -14,7 +15,7 @@ const Chat = () => {
         'https://api.npoint.io/b919cb46edac4c74d0a8',
       );
 
-      setData(result.data);
+      setData(jsonData);
     };
     fetchData();
   }, []);
