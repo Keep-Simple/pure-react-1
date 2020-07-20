@@ -3,20 +3,21 @@ import React from 'react';
 const Message = ({ms}) => {
 
   let prevDate = null;
+  let currentDate = new Date(ms.date);
 
   const insertDividerIfNeeded = ms => {
-    let currentDate = new Date(ms.date);
+    currentDate = new Date(ms.date);
 
-    if (prevDate !== currentDate.getDay()) {
+    if (prevDate?.getDay() !== currentDate.getDay()) {
       return (
         <div>
           <hr/>
-          <span>{`${currentDate.getDay()}/${currentDate.getUTCMonth()}/${currentDate.getFullYear()}`}</span>
+          <span>{`${currentDate.getUTCDay()}/${currentDate.getUTCMonth()}/${currentDate.getFullYear()}`}</span>
           <hr/>
         </div>);
     }
 
-    prevDate = currentDate.getDay();
+    prevDate = currentDate;
   }
 
   return (
@@ -24,6 +25,7 @@ const Message = ({ms}) => {
       {insertDividerIfNeeded(ms)}
       <img src={ms.avatar} alt="avatar" style={{height: 45}}/>
       <strong>{ms.name}</strong>
+      <p>{currentDate.toLocaleTimeString()}</p>
       <p>{ms.text}</p>
     </div>
   );

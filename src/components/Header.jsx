@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = ({data}) => {
 
-  let getLatest = new Date() - Math.max(...data.map(i => new Date(i.date)));
+  let getLatest = new Date() - new Date(data[data.length - 1]?.date);
   getLatest = Math.floor(getLatest / (1000 * 60 * 60));
   const getUserCount = new Set(data.map(i => i.name)).size;
 
