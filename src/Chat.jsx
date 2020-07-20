@@ -23,7 +23,7 @@ const Chat = () => {
   return (
     <>
       <Header data={store}/>
-      <MessageList data={store}/>
+      <MessageList data={store} editData={setStore}/>
       <MessageInput data={store} addData={setStore}/>
     </>
   );
