@@ -28,6 +28,9 @@ const Message = ({ms, data, editData}) => {
   }
 
   const editHandler = () => {
+    if (isEdited) {
+      editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date().getUTCDate} : i));
+    }
     setEdit(!isEdited);
   }
 
@@ -38,8 +41,11 @@ const Message = ({ms, data, editData}) => {
       <strong>{ms.name}</strong>
       <p>{currentDate.toLocaleTimeString()}</p>
       {isEdited ? <input type="text" value={body} onChange={e => setBody(e.target.value)}/> : <p>{ms.text}</p>}
-      <button onClick={deleteHandler}>Delete</button>
-      <button onClick={editHandler}>Edit</button>
+      {ms.user_id === '12345' &&
+      <>
+        <button onClick={deleteHandler}>Delete</button>
+        <button onClick={editHandler}>Edit</button>
+      </>}
     </div>
   );
 }
