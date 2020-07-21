@@ -17,7 +17,7 @@ const MessageInput = ({data, addData}) => {
   };
 
   return (
-    <Segment style={{borderRadius: '15px', height: '150px', margin: '30px'}}>
+    <Segment style={{borderRadius: '15px', width: '65%', height: '150px', margin: '5% auto'}}>
       <Form onSubmit={handlePost}>
         <Form.TextArea
           style={{border: 'none'}}

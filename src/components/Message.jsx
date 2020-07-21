@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Comment, Confirm, Divider, Icon, Input} from "semantic-ui-react";
+import {Button, Comment, Confirm, Icon, Input} from "semantic-ui-react";
 
 const Message = ({ms, data, editData}) => {
 
@@ -9,29 +9,12 @@ const Message = ({ms, data, editData}) => {
   const [delOpen, setDelModel] = useState(false);
   const isAdmin = ms.user_id === '12345';
 
-  let prevDate = null;
-  let currentDate = new Date(ms.date);
-
-  const insertDividerIfNeeded = ms => {
-    currentDate = new Date(ms.date);
-
-    if (prevDate?.getDay() !== currentDate.getDay()) {
-      return (
-        <Divider horizontal>
-          {`${currentDate.getUTCDay()}-${currentDate.getUTCMonth()}-${currentDate.getFullYear()}`}
-        </Divider>
-      );
-    }
-
-    prevDate = currentDate;
-  }
-
   const deleteHandler = () => {
     editData(data.filter(i => i.id !== ms.id));
   }
 
   const editHandler = () => {
-    if (isEdited) {
+    if (isEdited && !!body) {
       editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date()} : i));
     }
     setEdit(!isEdited);
@@ -41,16 +24,14 @@ const Message = ({ms, data, editData}) => {
     setLiked(!isLiked);
   }
 
-
   return (
     <>
-      {insertDividerIfNeeded(ms)}
-      <Comment>
+      <Comment style={isAdmin ? {padding: '1% 0 1% 50%'} : {padding: '1% 0 1% 0'}}>
         {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
         <Comment.Content>
           <Comment.Author as="a">{ms.name}</Comment.Author>
           <Comment.Metadata>
-            at {currentDate.toLocaleTimeString()}
+            at {new Date(ms.date).toLocaleTimeString()}
           </Comment.Metadata>
           <Comment.Text>
             {isEdited ? <Input

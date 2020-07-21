@@ -1,4 +1,5 @@
 import React from 'react';
+import {Segment} from "semantic-ui-react";
 
 const Header = ({data}) => {
 
@@ -7,11 +8,11 @@ const Header = ({data}) => {
   const getUserCount = new Set(data.map(i => i.name)).size;
 
   return (
-    <div style={{textAlign: "center", backgroundColor: "grey"}}>
+    <Segment>
       <div>Message count: {data.length}</div>
       <div>User count: {getUserCount}</div>
       <div>Latest message: {getLatest} hours ago</div>
-    </div>
+    </Segment>
   );
 }
 

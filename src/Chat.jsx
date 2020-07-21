@@ -20,7 +20,7 @@ const Chat = () => {
     setTimeout(() => {
       setStore(jsonData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
       setLoading(!isLoading);
-    }, 3000);
+    }, 100);
     // fetchData();
   }, []);
 
