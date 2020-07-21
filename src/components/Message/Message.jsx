@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Comment, Confirm, Icon, Input} from "semantic-ui-react";
-import './styles.css';
 import moment from "moment";
+import './styles.css';
+import admin from '../../mock/Admin';
 
 const Message = ({ms, data, editData}) => {
 
@@ -9,7 +10,7 @@ const Message = ({ms, data, editData}) => {
   const [body, setBody] = useState(ms?.text);
   const [isLiked, setLiked] = useState(false);
   const [delOpen, setDelModel] = useState(false);
-  const isAdmin = ms.user_id === '12345';
+  const isAdmin = ms.user_id === admin.user_id;
 
   const deleteHandler = () => {
     editData(data.filter(i => i.id !== ms.id));
@@ -61,6 +62,7 @@ const Message = ({ms, data, editData}) => {
         </Comment.Content>
       </Comment>
       <Confirm
+        style={{borderRadius: 30, padding: 10}}
         confirmButton='Delete'
         content='Delete this message?'
         size='mini'

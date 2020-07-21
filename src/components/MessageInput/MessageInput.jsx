@@ -1,26 +1,21 @@
 import React, {useState} from 'react';
 import {Button, Form, Icon, Segment} from 'semantic-ui-react';
+import './styles.css';
+import {createMessageFromAdmin} from "../../mock/Admin";
 
 const MessageInput = ({data, addData}) => {
   const [body, setBody] = useState('');
 
   const handlePost = () => {
-    addData([...data, {
-      name: 'Keep Simple',
-      text: body,
-      date: new Date(),
-      user_id: '12345',
-      id: Math.random() * 100,
-      avatar: 'https://robohash.org/quamestlaborum.png?size=50x50&set=set1'
-    }]);
+    addData([...data, createMessageFromAdmin(body)]);
     setBody('');
   };
 
   return (
-    <Segment clearing style={{borderRadius: '15px', width: '65%', margin: '5% auto'}}>
-      <Form reply onSubmit={handlePost}>
+    <Segment clearing className="editSegment">
+      <Form onSubmit={handlePost}>
         <Form.TextArea
-          style={{border: 'none', height: '8%', fontSize: 'medium'}}
+          className="textArea"
           value={body}
           placeholder="What's happening?"
           onChange={ev => setBody(ev.target.value)}

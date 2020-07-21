@@ -1,0 +1,11 @@
+.editSegment {
+    border-radius: 30px !important;
+    width: 65% !important;
+    margin: 5% auto !important;
+}
+
+.textArea * {
+    border: none !important;
+    height: 8% !important;
+    font-size: medium !important;
+}
