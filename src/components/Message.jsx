@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
+import {Button, Comment, Divider, Icon, Input} from "semantic-ui-react";
 
 const Message = ({ms, data, editData}) => {
 
   const [isEdited, setEdit] = useState(false);
   const [body, setBody] = useState(ms?.text);
   const [isLiked, setLiked] = useState(false);
-  const ref = React.createRef();
   const isAdmin = ms.user_id === '12345';
 
   let prevDate = null;
@@ -16,11 +16,10 @@ const Message = ({ms, data, editData}) => {
 
     if (prevDate?.getDay() !== currentDate.getDay()) {
       return (
-        <div>
-          <hr/>
-          <span>{`${currentDate.getUTCDay()}/${currentDate.getUTCMonth()}/${currentDate.getFullYear()}`}</span>
-          <hr/>
-        </div>);
+        <Divider horizontal>
+          {`${currentDate.getUTCDay()}-${currentDate.getUTCMonth()}-${currentDate.getFullYear()}`}
+        </Divider>
+      );
     }
 
     prevDate = currentDate;
@@ -38,25 +37,45 @@ const Message = ({ms, data, editData}) => {
   }
 
   const likeHandler = () => {
-    ref.current.style.backgroundColor = !isLiked ? 'red' : 'white';
     setLiked(!isLiked);
   }
 
 
   return (
-    <div>
+    <>
       {insertDividerIfNeeded(ms)}
-      {!isAdmin && <img src={ms.avatar} alt="avatar" style={{height: 45}}/>}
-      <strong>{ms.name}</strong>
-      <p>{currentDate.toLocaleTimeString()}</p>
-      {isEdited ? <input type="text" value={body} onChange={e => setBody(e.target.value)}/> : <p>{ms.text}</p>}
-      {isAdmin &&
-      <>
-        <button onClick={deleteHandler}>Delete</button>
-        <button onClick={editHandler}>Edit</button>
-      </>}
-      {!isAdmin && <button ref={ref} onClick={likeHandler}>Like</button>}
-    </div>
+      <Comment>
+        {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
+        <Comment.Content>
+          <Comment.Author as="a">{ms.name}</Comment.Author>
+          <Comment.Metadata>
+            at {currentDate.toLocaleTimeString()}
+          </Comment.Metadata>
+          <Comment.Text>
+            {isEdited ? <Input
+                focus
+                error={!body}
+                icon={<Button icon onClick={editHandler} disabled={!body}>
+                  <Icon name='check'/>
+                </Button>}
+                value={body}
+                onChange={e => setBody(e.target.value)}/>
+              : ms.text}
+          </Comment.Text>
+          <Comment.Actions>
+            {isAdmin && <>
+              <Comment.Action><span onClick={editHandler}>Edit</span></Comment.Action>
+              <Comment.Action><span onClick={deleteHandler}>Delete</span></Comment.Action>
+            </>}
+            {!isAdmin && <Comment.Action>
+              <span onClick={likeHandler}>
+                <Icon color={isLiked && "red"} name='like'/>Like
+              </span>
+            </Comment.Action>}
+          </Comment.Actions>
+        </Comment.Content>
+      </Comment>
+    </>
   );
 }
 
