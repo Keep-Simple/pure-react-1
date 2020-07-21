@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import Header from "./components/Header";
-import MessageInput from "./components/MessageInput";
-import MessageList from "./components/MessageList";
+import Header from "./components/Header/Header";
+import MessageInput from "./components/MessageInput/MessageInput";
+import MessageList from "./components/MessageList/MessageList";
 import jsonData from "./mock/MOCK_DATA.json"
 import {Dimmer, Loader} from "semantic-ui-react";
 

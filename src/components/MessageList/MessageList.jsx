@@ -1,6 +1,8 @@
 import React, {useEffect, useRef} from 'react';
-import Message from "./Message";
-import {Comment, Divider} from "semantic-ui-react";
+import Message from "../Message/Message";
+import {Comment} from "semantic-ui-react";
+import moment from "moment";
+import './styles.css';
 
 const MessageList = ({data, editData}) => {
 
@@ -20,9 +22,9 @@ const MessageList = ({data, editData}) => {
     if (prevDate?.getDay() !== mountDate.getDay()) {
       prevDate = mountDate;
       return (
-        <Divider style={{margin: 5}} horizontal>
-          {`${mountDate.getDate()}-${mountDate.getMonth()}-${mountDate.getFullYear()}`}
-        </Divider>
+        <div className="timestamp">
+          {moment(mountDate).format('LLLL')}
+        </div>
       );
     }
     prevDate = mountDate;

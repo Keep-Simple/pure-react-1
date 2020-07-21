@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Comment, Confirm, Icon, Input} from "semantic-ui-react";
+import './styles.css';
 
 const Message = ({ms, data, editData}) => {
 
@@ -26,7 +27,7 @@ const Message = ({ms, data, editData}) => {
 
   return (
     <>
-      <Comment style={isAdmin ? {padding: '1% 0 1% 50%'} : {padding: '1% 0 1% 0'}}>
+      <Comment className={isAdmin ? "bubble mine" : "bubble"}>
         {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
         <Comment.Content>
           <Comment.Author as="a">{ms.name}</Comment.Author>
