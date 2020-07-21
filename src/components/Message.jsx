@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {Button, Comment, Divider, Icon, Input} from "semantic-ui-react";
+import {Button, Comment, Confirm, Divider, Icon, Input} from "semantic-ui-react";
 
 const Message = ({ms, data, editData}) => {
 
   const [isEdited, setEdit] = useState(false);
   const [body, setBody] = useState(ms?.text);
   const [isLiked, setLiked] = useState(false);
+  const [delOpen, setDelModel] = useState(false);
   const isAdmin = ms.user_id === '12345';
 
   let prevDate = null;
@@ -65,16 +66,24 @@ const Message = ({ms, data, editData}) => {
           <Comment.Actions>
             {isAdmin && <>
               <Comment.Action><span onClick={editHandler}>Edit</span></Comment.Action>
-              <Comment.Action><span onClick={deleteHandler}>Delete</span></Comment.Action>
+              <Comment.Action><span onClick={() => setDelModel(true)}>Delete</span></Comment.Action>
             </>}
             {!isAdmin && <Comment.Action>
-              <span onClick={likeHandler}>
-                <Icon color={isLiked && "red"} name='like'/>Like
+              <span style={{userSelect: 'none'}} onClick={likeHandler}>
+                <Icon color={isLiked ? 'red' : 'grey'} name='like'/>Like
               </span>
             </Comment.Action>}
           </Comment.Actions>
         </Comment.Content>
       </Comment>
+      <Confirm
+        confirmButton='Delete'
+        content='Delete this message?'
+        size='mini'
+        open={delOpen}
+        onCancel={() => setDelModel(false)}
+        onConfirm={deleteHandler}
+      />
     </>
   );
 }
