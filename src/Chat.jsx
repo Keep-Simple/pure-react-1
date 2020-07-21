@@ -3,10 +3,12 @@ import Header from "./components/Header";
 import MessageInput from "./components/MessageInput";
 import MessageList from "./components/MessageList";
 import jsonData from "./mock/MOCK_DATA.json"
+import {Dimmer, Loader} from "semantic-ui-react";
 
 const Chat = () => {
 
   const [store, setStore] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     // const fetchData = async () => {
@@ -15,13 +17,17 @@ const Chat = () => {
     //   );
     //
     // };
-    setStore(jsonData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
+    setTimeout(() => {
+      setStore(jsonData.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()));
+      setLoading(!isLoading);
+    }, 3000);
     // fetchData();
   }, []);
 
 
   return (
     <>
+      {isLoading && <Dimmer active><Loader/></Dimmer>}
       <Header data={store}/>
       <MessageList data={store} editData={setStore}/>
       <MessageInput data={store} addData={setStore}/>
