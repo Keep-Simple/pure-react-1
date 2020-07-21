@@ -1,19 +1,26 @@
 import React from 'react';
-import {Segment} from "semantic-ui-react";
+import {Header as HeaderUI, Segment} from "semantic-ui-react";
+
 
 const Header = ({data}) => {
 
-  let getLatest = new Date() - new Date(data[data.length - 1]?.date);
-  getLatest = Math.floor(getLatest / (1000 * 60 * 60));
-  const getUserCount = new Set(data.map(i => i.name)).size;
+  if (data) {
+    let getLatest = new Date(data[data.length - 1]?.date);
+    const getUserCount = new Set(data.map(i => i.name)).size;
 
-  return (
-    <Segment>
-      <div>Message count: {data.length}</div>
-      <div>User count: {getUserCount}</div>
-      <div>Latest message: {getLatest} hours ago</div>
-    </Segment>
-  );
+    return (
+      <Segment style={{position: ''}} clearing>
+        <HeaderUI floated='right'>
+          latest message at {getLatest.toLocaleTimeString()}
+        </HeaderUI>
+        <HeaderUI floated='left'>
+          <div>{data?.length} messages</div>
+          <div>{getUserCount} participants</div>
+        </HeaderUI>
+      </Segment>
+    );
+  }
+  return null;
 }
 
 export default Header;

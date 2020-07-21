@@ -18,29 +18,53 @@ const MessageInput = ({data, addData}) => {
 
   return (
     <Segment style={{borderRadius: '15px', width: '65%', height: '150px', margin: '5% auto'}}>
-      <Form onSubmit={handlePost}>
+
+      <Form reply onSubmit={handlePost}>
         <Form.TextArea
-          style={{border: 'none'}}
-          name="body"
+          style={{border: 'none', height: '8%', fontSize: 'medium'}}
           value={body}
           placeholder="What's happening?"
           onChange={ev => setBody(ev.target.value)}
         />
         <Button
           disabled={!body.length}
-          inverted
           primary
           style={{borderRadius: '30px'}}
-          floated="right"
+          floated="top"
           type="submit"
           size="large"
           animated
         >
-          <Button.Content visible>Send</Button.Content>
-          <Button.Content hidden><Icon name="arrow right"/></Button.Content>
+          <Button.Content visible><b>Send</b></Button.Content>
+          <Button.Content hidden><Icon name="arrow up"/></Button.Content>
         </Button>
       </Form>
     </Segment>
+
+    // <Segment style={{borderRadius: '15px', width: '65%', height: '150px', margin: '5% auto'}}>
+    //   <Form onSubmit={handlePost}>
+    //     <Form.TextArea
+    //       style={{border: 'none'}}
+    //       name="body"
+    //       value={body}
+    //       placeholder="What's happening?"
+    //       onChange={ev => setBody(ev.target.value)}
+    //     />
+    //     <Button
+    //       disabled={!body.length}
+    //       inverted
+    //       primary
+    //       style={{borderRadius: '30px'}}
+    //       floated="right"
+    //       type="submit"
+    //       size="large"
+    //       animated
+    //     >
+    //       <Button.Content visible>Send</Button.Content>
+    //       <Button.Content hidden><Icon name="arrow right"/></Button.Content>
+    //     </Button>
+    //   </Form>
+    // </Segment>
   );
 };
 

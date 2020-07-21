@@ -24,10 +24,13 @@ const Chat = () => {
     // fetchData();
   }, []);
 
-
+  console.log(store);
   return (
     <>
-      {isLoading && <Dimmer active><Loader/></Dimmer>}
+      {isLoading &&
+      <Dimmer active>
+        <Loader/>
+      </Dimmer>}
       <Header data={store}/>
       <MessageList data={store} editData={setStore}/>
       <MessageInput data={store} addData={setStore}/>
