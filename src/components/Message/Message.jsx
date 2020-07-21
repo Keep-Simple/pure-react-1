@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Comment, Confirm, Icon, Input} from "semantic-ui-react";
 import './styles.css';
+import moment from "moment";
 
 const Message = ({ms, data, editData}) => {
 
@@ -32,9 +33,9 @@ const Message = ({ms, data, editData}) => {
         <Comment.Content>
           <Comment.Author as="a">{ms.name}</Comment.Author>
           <Comment.Metadata>
-            at {new Date(ms.date).toLocaleTimeString()}
+            at {moment(new Date(ms.date)).format("LT")}
           </Comment.Metadata>
-          <Comment.Text>
+          <Comment.Text style={{marginTop: '10px'}}>
             {isEdited ? <Input
                 focus
                 error={!body}
@@ -46,13 +47,14 @@ const Message = ({ms, data, editData}) => {
               : ms.text}
           </Comment.Text>
           <Comment.Actions>
-            {isAdmin && <>
-              <Comment.Action><span onClick={editHandler}>Edit</span></Comment.Action>
+            {isAdmin && <div style={{marginTop: '4%'}}>
               <Comment.Action><span onClick={() => setDelModel(true)}>Delete</span></Comment.Action>
-            </>}
-            {!isAdmin && <Comment.Action>
-              <span style={{userSelect: 'none'}} onClick={likeHandler}>
-                <Icon color={isLiked ? 'red' : 'grey'} name='like'/>Like
+              <Comment.Action><span onClick={editHandler}>Edit</span></Comment.Action>
+            </div>
+            }
+            {!isAdmin && <Comment.Action style={{userSelect: 'none', marginLeft: '96%'}}>
+              <span onClick={likeHandler}>
+                <Icon color={isLiked ? 'red' : 'grey'} name='like'/>
               </span>
             </Comment.Action>}
           </Comment.Actions>

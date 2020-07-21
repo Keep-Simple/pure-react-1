@@ -31,7 +31,7 @@ const MessageList = ({data, editData}) => {
   }
 
   return (
-    <Comment.Group minimal size="large" style={{margin: '0 auto'}}>
+    <Comment.Group size="large" style={{margin: '0 auto'}}>
       {data.map(ms => (
         <span key={ms.id}>
           {insertDividerIfNeeded(ms)}
