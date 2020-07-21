@@ -4,6 +4,9 @@ const Message = ({ms, data, editData}) => {
 
   const [isEdited, setEdit] = useState(false);
   const [body, setBody] = useState(ms?.text);
+  const [isLiked, setLiked] = useState(false);
+  const ref = React.createRef();
+  const isAdmin = ms.user_id === '12345';
 
   let prevDate = null;
   let currentDate = new Date(ms.date);
@@ -34,18 +37,25 @@ const Message = ({ms, data, editData}) => {
     setEdit(!isEdited);
   }
 
+  const likeHandler = () => {
+    ref.current.style.backgroundColor = !isLiked ? 'red' : 'white';
+    setLiked(!isLiked);
+  }
+
+
   return (
     <div>
       {insertDividerIfNeeded(ms)}
-      <img src={ms.avatar} alt="avatar" style={{height: 45}}/>
+      {!isAdmin && <img src={ms.avatar} alt="avatar" style={{height: 45}}/>}
       <strong>{ms.name}</strong>
       <p>{currentDate.toLocaleTimeString()}</p>
       {isEdited ? <input type="text" value={body} onChange={e => setBody(e.target.value)}/> : <p>{ms.text}</p>}
-      {ms.user_id === '12345' &&
+      {isAdmin &&
       <>
         <button onClick={deleteHandler}>Delete</button>
         <button onClick={editHandler}>Edit</button>
       </>}
+      {!isAdmin && <button ref={ref} onClick={likeHandler}>Like</button>}
     </div>
   );
 }
