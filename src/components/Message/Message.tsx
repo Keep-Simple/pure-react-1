@@ -3,22 +3,25 @@ import {Comment, Confirm, Icon, Input} from "semantic-ui-react";
 import moment from "moment";
 import './styles.css';
 import admin from '../../mock/Admin';
+import {MessageState} from "../../Chat";
 
-const Message = ({ms, data, editData}) => {
+type MessageProps = {
+    ms: MessageState,
+    editMs: any,
+    deleteMs: any
+}
 
-  const [isEdited, setEdit] = useState(false);
-  const [body, setBody] = useState(ms?.text);
-  const [isLiked, setLiked] = useState(false);
-  const [delOpen, setDelModel] = useState(false);
-  const isAdmin = ms.user_id === admin.user_id;
+const Message = ({ms, deleteMs, editMs}: MessageProps) => {
 
-  const deleteHandler = () => {
-    editData(data.filter(i => i.id !== ms.id));
-  }
+    const [isEdited, setEdit] = useState(false);
+    const [body, setBody] = useState(ms?.text);
+    const [isLiked, setLiked] = useState(false);
+    const [delOpen, setDelModel] = useState(false);
+    const isAdmin = ms.user_id === admin.user_id;
 
-  const editHandler = () => {
-    if (isEdited && !!body) {
-      editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date()} : i));
+    const editHandler = () => {
+        if (isEdited && !!body) {
+            editMs(ms, body);
     }
     setEdit(!isEdited);
   }
@@ -71,13 +74,13 @@ const Message = ({ms, data, editData}) => {
         {actions()}
       </Comment.Content>
       <Confirm
-        className="deleteModal"
-        confirmButton='Delete'
-        content='Delete this message?'
-        size='mini'
-        open={delOpen}
-        onCancel={() => setDelModel(false)}
-        onConfirm={deleteHandler}
+          className="deleteModal"
+          confirmButton='Delete'
+          content='Delete this message?'
+          size='mini'
+          open={delOpen}
+          onCancel={() => setDelModel(false)}
+          onConfirm={() => deleteMs(ms)}
       />
     </Comment>
   );

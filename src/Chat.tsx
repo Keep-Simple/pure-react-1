@@ -3,10 +3,9 @@ import Header from "./components/Header/Header";
 import MessageInput from "./components/MessageInput/MessageInput";
 import MessageList from "./components/MessageList/MessageList";
 import jsonData from "./mock/MOCK_DATA"
-// @ts-ignore
 import {Dimmer, Loader} from "semantic-ui-react";
-// @ts-ignore
 import moment from "moment";
+import {createMessageFromAdmin} from "./mock/Admin";
 
 const Chat = () => {
     const [store, setStore] = useState<AppState>([]);
@@ -35,6 +34,10 @@ const Chat = () => {
         }
     );
 
+    const addHandler = (body: string) => {
+        setStore((data: AppState) => [...data, createMessageFromAdmin(body) as MessageState]);
+    }
+
     return (
         <>
             {isLoading &&
@@ -44,12 +47,14 @@ const Chat = () => {
             <Header data={getHeaderState()}/>
             <MessageList data={store} editData={setStore}/>
             <div ref={endRef}/>
-            <MessageInput addData={setStore}/>
+            <MessageInput addMs={addHandler}/>
         </>
     );
 }
 
-interface Message {
+export type AppState = MessageState[];
+
+export interface MessageState {
     name: string;
     date: string;
     avatar: string;
@@ -59,7 +64,6 @@ interface Message {
     user_id: string;
 }
 
-export type AppState = Message[];
 
 export interface HeaderState {
     userCount: number;

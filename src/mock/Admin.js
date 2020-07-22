@@ -1,10 +1,11 @@
 export const createMessageFromAdmin = text => (
   {
     name: 'Keep Simple',
-    text,
-    date: new Date(),
+    text: text,
+    date: new Date().toLocaleString(),
+    edit_date: '',
     user_id: '12345',
-    id: Math.random() * 10000,
+    id: String(Math.random() * 10000),
     avatar: 'https://robohash.org/quamestlaborum.png?size=50x50&set=set1'
   }
 );
