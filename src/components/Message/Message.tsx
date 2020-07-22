@@ -3,7 +3,7 @@ import {Comment, Confirm, Icon, Input} from "semantic-ui-react";
 import moment from "moment";
 import './styles.css';
 import admin from '../../mock/Admin';
-import {MessageState} from "../../Chat";
+import {MessageState} from "../../container/Chat";
 
 type MessageProps = {
     ms: MessageState,

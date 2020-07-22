@@ -1,11 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
-import Header from "./components/Header/Header";
-import MessageInput from "./components/MessageInput/MessageInput";
-import MessageList from "./components/MessageList/MessageList";
-import jsonData from "./mock/MOCK_DATA"
+import Header from "../components/Header/Header";
+import MessageInput from "../components/MessageInput/MessageInput";
+import MessageList from "../components/MessageList/MessageList";
+import jsonData from "../mock/MOCK_DATA"
 import {Dimmer, Loader} from "semantic-ui-react";
 import moment from "moment";
-import {createMessageFromAdmin} from "./mock/Admin";
+import {createMessageFromAdmin} from "../mock/Admin";
 
 const Chat = () => {
     const [store, setStore] = useState<AppState>([]);

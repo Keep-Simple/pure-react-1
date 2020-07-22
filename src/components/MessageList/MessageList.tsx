@@ -2,7 +2,7 @@ import React, {Dispatch} from 'react';
 import {Comment} from "semantic-ui-react";
 import moment from "moment";
 import './styles.css';
-import {AppState, MessageState} from "../../Chat";
+import {AppState, MessageState} from "../../container/Chat";
 import Message from "../Message/Message";
 
 type MessageListProps = {

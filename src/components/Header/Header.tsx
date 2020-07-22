@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import {HeaderState} from "../../Chat";
+import {HeaderState} from "../../container/Chat";
 
 type HeaderProps = {
     data: HeaderState
