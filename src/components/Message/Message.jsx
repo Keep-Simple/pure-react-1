@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Comment, Confirm, Icon, Input} from "semantic-ui-react";
+import {Comment, Confirm, Icon, Input} from "semantic-ui-react";
 import moment from "moment";
 import './styles.css';
 import admin from '../../mock/Admin';
@@ -28,6 +28,8 @@ const Message = ({ms, data, editData}) => {
   }
 
   const actions = () => {
+    if (isEdited) return;
+
     if (isAdmin) {
       return (
         <Comment.Actions style={{marginTop: '4%'}}>
@@ -45,6 +47,16 @@ const Message = ({ms, data, editData}) => {
     );
   }
 
+  const editField = () => (
+    <Input fluid autoFocus error={!body} style={{marginBottom: '1rem'}}
+           icon={body ?
+             <i onClick={editHandler} className="send link icon"/>
+             :
+             <i className="icon dont"/>}
+           value={body}
+           onChange={e => setBody(e.target.value)}/>
+  );
+
   return (
     <Comment className={isAdmin ? "bubble mine" : "bubble"}>
       {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
@@ -54,21 +66,12 @@ const Message = ({ms, data, editData}) => {
           at {moment(new Date(ms.date)).format("LT")}
         </Comment.Metadata>
         <Comment.Text style={{marginTop: '10px'}}>
-            {isEdited ? <Input
-                focus
-                error={!body}
-                icon={
-                  <Button icon onClick={editHandler} disabled={!body}>
-                    <Icon name='check'/>
-                  </Button>}
-                value={body}
-                onChange={e => setBody(e.target.value)}/>
-              : ms.text}
+          {isEdited ? editField() : ms.text}
         </Comment.Text>
         {actions()}
       </Comment.Content>
       <Confirm
-        style={{borderRadius: 30, padding: 10}}
+        className="deleteModal"
         confirmButton='Delete'
         content='Delete this message?'
         size='mini'

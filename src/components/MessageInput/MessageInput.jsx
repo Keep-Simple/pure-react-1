@@ -6,7 +6,8 @@ import {createMessageFromAdmin} from "../../mock/Admin";
 const MessageInput = ({data, addData}) => {
   const [body, setBody] = useState('');
 
-  const handlePost = () => {
+  const handlePost = e => {
+    e.preventDefault();
     addData([...data, createMessageFromAdmin(body)]);
     setBody('');
   };
@@ -15,10 +16,10 @@ const MessageInput = ({data, addData}) => {
     <Segment clearing className="editSegment">
       <Form onSubmit={handlePost}>
         <Form.TextArea
-          onKeyPress={e => e.key === "Enter" && !e.shiftKey && handlePost()}
+          onKeyPress={e => e.key === "Enter" && !e.shiftKey && handlePost(e)}
           autoFocus
           className="textArea"
-          value={body}
+          value={body && String(body).trim()}
           placeholder="What's happening?"
           onChange={ev => setBody(ev.target.value)}
         />

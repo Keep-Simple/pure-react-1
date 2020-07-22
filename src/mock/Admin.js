@@ -4,7 +4,7 @@ export const createMessageFromAdmin = text => (
     text,
     date: new Date(),
     user_id: '12345',
-    id: Math.random() * 100,
+    id: Math.random() * 10000,
     avatar: 'https://robohash.org/quamestlaborum.png?size=50x50&set=set1'
   }
 );

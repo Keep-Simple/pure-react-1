@@ -9,3 +9,20 @@
     background: rgba(222, 222, 222, 0.55) !important;
     text-align: right !important;
 }
+
+.deleteModal {
+    border-radius: 30px !important;
+    padding: 10px !important;
+    width: 20% !important;
+}
+
+.deleteModal * {
+    text-align: center !important;
+    font-weight: 500;
+    font-size: 1.1rem !important;
+}
+
+.deleteModal button {
+    border-radius: 30px !important;
+    padding: 12px !important;
+}
