@@ -19,17 +19,16 @@ const MessageInput = ({data, addData}) => {
           onKeyPress={e => e.key === "Enter" && !e.shiftKey && handlePost(e)}
           autoFocus
           className="textArea"
-          value={body && String(body).trim()}
+          value={body}
           placeholder="What's happening?"
           onChange={ev => setBody(ev.target.value)}
         />
         <Button
           disabled={!body.length}
-          primary
-          style={{borderRadius: '30px'}}
+          className="inputButton"
           floated="right"
           type="submit"
-          size="large"
+          size="big"
           animated="vertical"
         >
           <Button.Content visible><b>Send</b></Button.Content>

@@ -2,18 +2,20 @@
     background: #f8f9fa !important;
     padding: 10px 25px !important;
     border-radius: 40px !important;
-    margin: 1% 0 1% 0 !important;
+    margin: 1% 0 2% 0 !important;
+    border: 1px solid rgba(34, 36, 38, .15) !important;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, .15) !important;
 }
 
 .mine {
-    background: #dee2e6 !important;
+    background: rgba(49, 169, 243, 0.1) !important;
     text-align: right !important;
 }
 
 .deleteModal {
     border-radius: 30px !important;
     padding: 10px !important;
-    width: 20% !important;
+    width: 226px !important;
 }
 
 .deleteModal * {
@@ -25,4 +27,14 @@
 .deleteModal button {
     border-radius: 30px !important;
     padding: 12px !important;
+}
+
+.avatar {
+    overflow: hidden !important;
+    border-radius: 50% !important;
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 1) !important;
+}
+
+.author {
+    color: rgb(45, 136, 193) !important;
 }

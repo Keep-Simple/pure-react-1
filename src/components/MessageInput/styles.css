@@ -1,6 +1,7 @@
 .editSegment {
     border-radius: 30px !important;
-    width: 65% !important;
+    min-width: 300px !important;
+    max-width: 700px;
     margin: 5% auto !important;
 }
 
@@ -8,4 +9,10 @@
     border: none !important;
     max-height: 4% !important;
     font-size: medium !important;
+}
+
+.inputButton {
+    color: white !important;
+    border-radius: 30px !important;
+    background-color: #31a9f3 !important;
 }

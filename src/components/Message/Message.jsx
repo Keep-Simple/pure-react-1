@@ -32,7 +32,7 @@ const Message = ({ms, data, editData}) => {
 
     if (isAdmin) {
       return (
-        <Comment.Actions style={{marginTop: '4%'}}>
+        <Comment.Actions style={{marginTop: '2.5%'}}>
           <Comment.Action onClick={() => setDelModel(true)}>Delete</Comment.Action>
           <Comment.Action onClick={editHandler}>Edit</Comment.Action>
         </Comment.Actions>);
@@ -59,9 +59,9 @@ const Message = ({ms, data, editData}) => {
 
   return (
     <Comment className={isAdmin ? "bubble mine" : "bubble"}>
-      {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
+      {!isAdmin && <Comment.Avatar className="avatar" src={ms.avatar}/>}
       <Comment.Content>
-        <Comment.Author as="a">{ms.name}</Comment.Author>
+        <Comment.Author as="a" className="author">{ms.name}</Comment.Author>
         <Comment.Metadata>
           at {moment(new Date(ms.date)).format("LT")}
         </Comment.Metadata>
