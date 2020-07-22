@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.css';
+import moment from "moment";
 
 const Header = ({data}) => {
 
@@ -9,12 +10,21 @@ const Header = ({data}) => {
   return (
     <div className="toolbar">
       <div className="left-items">
-        {data?.length} messages
-        &nbsp;
-        {getUserCount} participants
+        {data?.length}&nbsp;<i className="comments icon"/>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {getUserCount}&nbsp;<i className="male icon"/>
       </div>
-      <h1 className="toolbar-title">Tweety chat</h1>
-      <div className="right-items">latest message at {getLatest.toLocaleTimeString()}</div>
+      <h1 className="toolbar-title">
+        <i className="facebook messenger icon"/>
+        Tweety
+      </h1>
+      <div className="right-items">
+        <span>
+        latest at {moment(getLatest).format("HH:mm")}
+          &nbsp;
+          <i className="clock icon"/>
+        </span>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,12 @@
 .bubble {
-    background: #f4f4f8 !important;
+    background: #f8f9fa !important;
     padding: 10px 25px !important;
     border-radius: 40px !important;
     margin: 1% 0 1% 0 !important;
 }
 
 .mine {
-    background: rgba(222, 222, 222, 0.55) !important;
+    background: #dee2e6 !important;
     text-align: right !important;
 }
 
