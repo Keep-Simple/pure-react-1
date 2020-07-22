@@ -1,18 +1,10 @@
-import React, {useEffect, useRef} from 'react';
+import React from 'react';
 import Message from "../Message/Message";
 import {Comment} from "semantic-ui-react";
 import moment from "moment";
 import './styles.css';
 
 const MessageList = ({data, editData}) => {
-
-  const messagesEndRef = useRef(null)
-
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({behavior: "smooth"})
-  }
-
-  useEffect(scrollToBottom, [data.length]);
 
   let prevDate = null;
 
@@ -37,7 +29,6 @@ const MessageList = ({data, editData}) => {
           {insertDividerIfNeeded(ms)}
           <Message ms={ms} data={data} editData={editData}/>
         </span>))}
-      <div ref={messagesEndRef}/>
     </Comment.Group>
 
   );

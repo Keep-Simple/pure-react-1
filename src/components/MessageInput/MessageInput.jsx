@@ -15,6 +15,8 @@ const MessageInput = ({data, addData}) => {
     <Segment clearing className="editSegment">
       <Form onSubmit={handlePost}>
         <Form.TextArea
+          onKeyPress={e => e.key === "Enter" && !e.shiftKey && handlePost()}
+          autoFocus
           className="textArea"
           value={body}
           placeholder="What's happening?"

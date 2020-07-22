@@ -6,6 +6,6 @@
 
 .textArea * {
     border: none !important;
-    height: 8% !important;
+    max-height: 4% !important;
     font-size: medium !important;
 }

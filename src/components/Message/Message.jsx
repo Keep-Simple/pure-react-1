@@ -27,40 +27,46 @@ const Message = ({ms, data, editData}) => {
     setLiked(!isLiked);
   }
 
+  const actions = () => {
+    if (isAdmin) {
+      return (
+        <Comment.Actions style={{marginTop: '4%'}}>
+          <Comment.Action onClick={() => setDelModel(true)}>Delete</Comment.Action>
+          <Comment.Action onClick={editHandler}>Edit</Comment.Action>
+        </Comment.Actions>);
+    }
+
+    return (
+      <Comment.Actions>
+        <Comment.Action onClick={likeHandler} style={{userSelect: 'none', marginLeft: '96%'}}>
+          <Icon color={isLiked ? 'red' : 'grey'} name='like'/>
+        </Comment.Action>
+      </Comment.Actions>
+    );
+  }
+
   return (
-    <>
-      <Comment className={isAdmin ? "bubble mine" : "bubble"}>
-        {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
-        <Comment.Content>
-          <Comment.Author as="a">{ms.name}</Comment.Author>
-          <Comment.Metadata>
-            at {moment(new Date(ms.date)).format("LT")}
-          </Comment.Metadata>
-          <Comment.Text style={{marginTop: '10px'}}>
+    <Comment className={isAdmin ? "bubble mine" : "bubble"}>
+      {!isAdmin && <Comment.Avatar as='a' src={ms.avatar}/>}
+      <Comment.Content>
+        <Comment.Author as="a">{ms.name}</Comment.Author>
+        <Comment.Metadata>
+          at {moment(new Date(ms.date)).format("LT")}
+        </Comment.Metadata>
+        <Comment.Text style={{marginTop: '10px'}}>
             {isEdited ? <Input
                 focus
                 error={!body}
-                icon={<Button icon onClick={editHandler} disabled={!body}>
-                  <Icon name='check'/>
-                </Button>}
+                icon={
+                  <Button icon onClick={editHandler} disabled={!body}>
+                    <Icon name='check'/>
+                  </Button>}
                 value={body}
                 onChange={e => setBody(e.target.value)}/>
               : ms.text}
-          </Comment.Text>
-          <Comment.Actions>
-            {isAdmin && <div style={{marginTop: '4%'}}>
-              <Comment.Action><span onClick={() => setDelModel(true)}>Delete</span></Comment.Action>
-              <Comment.Action><span onClick={editHandler}>Edit</span></Comment.Action>
-            </div>
-            }
-            {!isAdmin && <Comment.Action style={{userSelect: 'none', marginLeft: '96%'}}>
-              <span onClick={likeHandler}>
-                <Icon color={isLiked ? 'red' : 'grey'} name='like'/>
-              </span>
-            </Comment.Action>}
-          </Comment.Actions>
-        </Comment.Content>
-      </Comment>
+        </Comment.Text>
+        {actions()}
+      </Comment.Content>
       <Confirm
         style={{borderRadius: 30, padding: 10}}
         confirmButton='Delete'
@@ -70,7 +76,7 @@ const Message = ({ms, data, editData}) => {
         onCancel={() => setDelModel(false)}
         onConfirm={deleteHandler}
       />
-    </>
+    </Comment>
   );
 }
 
