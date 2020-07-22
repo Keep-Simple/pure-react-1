@@ -17,7 +17,7 @@ const MessageList = ({data, editData}: MessageListProps) => {
     }
 
     const editHandler = (ms: MessageState, body: string) => {
-        editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: new Date()} : i));
+        editData(data.map(i => i.id === ms.id ? {...i, text: body, edit_data: String(new Date())} : i));
     }
 
     let prevDate: Date;

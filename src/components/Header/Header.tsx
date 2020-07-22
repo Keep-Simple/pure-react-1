@@ -19,15 +19,15 @@ const Header = ({data}: HeaderProps) => {
                 <i className="facebook messenger icon"/>
                 Tweety
             </h1>
-      <div className="right-items">
+            <div className="right-items">
         <span>
         latest at {data.latestMessage}
             &nbsp;
             <i className="clock icon"/>
         </span>
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 }
 
 export default Header;
