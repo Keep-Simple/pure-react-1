@@ -1,4 +1,4 @@
-[
+const mock = [
   {
     "name": "Dannie",
     "date": "2019-10-22T14:01:40Z",
@@ -270,3 +270,5 @@
     "user_id": "864dfc1c321ba45bcf5ed9617d8a5845cfd397bbab0d258f888808c5797c0429"
   }
 ]
+
+export default mock;

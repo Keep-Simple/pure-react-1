@@ -3,12 +3,12 @@ import {Button, Form, Icon, Segment} from 'semantic-ui-react';
 import './styles.css';
 import {createMessageFromAdmin} from "../../mock/Admin";
 
-const MessageInput = ({data, addData}) => {
+const MessageInput = ({addData}) => {
   const [body, setBody] = useState('');
 
   const handlePost = e => {
     e.preventDefault();
-    addData([...data, createMessageFromAdmin(body)]);
+    addData(data => [...data, createMessageFromAdmin(body)]);
     setBody('');
   };
 
