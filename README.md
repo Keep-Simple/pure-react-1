@@ -1,2 +1,2 @@
-React app written on TypeScript. To start locally print `npm run dev`.
-You can try it `https://bsa-6-react.herokuapp.com/`
+React App with TypeScript. Print `npm run dev` to start app.
+You can try it https://bsa-6-react.herokuapp.com/
